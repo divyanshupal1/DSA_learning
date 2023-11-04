@@ -5,46 +5,41 @@ class Node{
     public:
     int data;
     Node* next;
+    Node* prev;
     Node(int d){
-        this->data = d;
-        this->next = NULL;
+        this -> data = d;
+        this -> next = NULL;
+        this -> prev = NULL;
     }
 };
 
-void Insert(Node* &head,int d){
+void InsertAtEnd(Node* &head,int d){
     Node* newNode = new Node(d);
-    if(head->next==NULL){
-        newNode->next=head;
+    Node* temp = head;
+    while(temp -> next != NULL){
+        temp=temp->next;
     }
-    else{
-        newNode->next=head->next;
-    }
-    head->next = newNode;
-    head = newNode;
+    newNode->prev = temp;
+    temp->next = newNode;
 }
 
 void Print(Node* head){
-    Node* temp = head->next;
-    while (temp->next!=head->next)
-    {
-        cout<<temp->data;
-        temp=temp->next;
-    }    
+    cout<<head -> data<<" ";
+    if( head -> next == NULL ) return;
+    Print(head->next);
 }
 
 int main(){
-        Node* head = new Node(0);
+    Node* head = new Node(0);
     int size,temp;
     cin>>size;
-    while (size>=0)
+    while (size>0)
     {
         cin>>temp;
-        Insert(head,temp);
+        InsertAtEnd(head,temp);
         size--;
     }
-    Print(head);
-
-    
+    Print(head);  
 
     return 0;
 }
