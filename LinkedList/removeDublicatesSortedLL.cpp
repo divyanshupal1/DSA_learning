@@ -1,4 +1,4 @@
-#include <iostream>
+#include<bits/stdc++.h>
 using namespace std;
 
 class Node
@@ -10,10 +10,6 @@ public:
     {
         this->data = d;
         this->next = NULL;
-    }
-    ~Node()
-    {
-        cout << "des" << endl;
     }
 };
 
@@ -62,26 +58,7 @@ public:
     }
 };
 
-class ExtendedLL : public LinkedList
-{
-public:
-    int findMid()
-    {
-        Node *forward = this->head;
-        Node *back = this->head;
-        int i = 0;
-        while (forward->next != NULL)
-        {
-            forward = forward->next;
-            if (i % 2 == 0)
-                back = back->next;
-            i++;
-        }
-        return back->data;
-    }
-};
-
-void driver(ExtendedLL *l1)
+void driver(LinkedList *l1)
 {
     int n;
     cin >> n;
@@ -94,15 +71,31 @@ void driver(ExtendedLL *l1)
     }
 }
 
+void removeDuplicates(LinkedList* &LL){
+    Node* head = LL->head;
+    if(head==NULL){
+        return;
+    }
+    Node* temp = head;
+    Node* curr = head->next;
+
+    while(curr!=NULL){
+        if(curr->data == temp->data){
+            curr = curr->next;
+        }
+        else{
+            temp->next = curr;
+            temp = temp->next;
+        }
+    }
+}
+
 int main()
 {
 
-    ExtendedLL *l1 = new ExtendedLL();
+    LinkedList *l1 = new LinkedList();
     driver(l1);
+    removeDuplicates(l1);
     l1->print();
-    cout << endl;
-    int mid = l1->findMid();
-    cout << "mid : " << mid;
-
     return 0;
 }

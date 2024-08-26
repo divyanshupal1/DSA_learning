@@ -24,7 +24,7 @@ void driver(Node* head,int l){
     }
 }
 void Print(Node* head){
-    cout<<head->data;
+    cout<<head->data<<" ";
     if(head->next!=NULL) Print(head->next);    
 }
 
@@ -44,6 +44,30 @@ void deleteFromEnd(Node* &head,int curr,int &total,int n){
     }
 };
 
+Node* newDelete(Node* &head,int n){
+        if(head->next == NULL && n==1 ) return NULL ;
+        Node* slow = head;
+        Node* fast = head;
+        int i = 1;
+        for(i;i<=n;i++){
+            fast=fast->next;
+        }
+        cout<<"fast :"<<fast->data<<endl;
+        cout<<"i :"<<i<<endl;
+        while(fast!=NULL && fast->next!=NULL){
+            fast=fast->next; 
+            slow=slow->next;
+            i++;
+        }
+        cout<<"i :"<<i<<endl;
+        cout<<"slow :"<<slow->data<<endl;
+        cout<<"fast :"<<fast->data<<endl;
+        if(n==i) return head->next;
+        if(slow->next==NULL) return head;
+        slow->next = slow->next->next;        
+        return head;
+}
+
 int main(){
     int l,d;
     cin>>l>>d;
@@ -51,7 +75,6 @@ int main(){
     driver(head,l-1);
     int n,total = 0;
     cin>>n;
-    deleteFromEnd(head,0,total,n);
-    Print(head);
+    Print(newDelete(head,n));
     return 0;
 }

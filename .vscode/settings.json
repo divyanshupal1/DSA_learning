@@ -4,6 +4,14 @@
         "initializer_list": "cpp",
         "valarray": "cpp",
         "ostream": "cpp",
-        "new": "cpp"
+        "new": "cpp",
+        "sstream": "cpp",
+        "regex": "cpp",
+        "vector": "cpp",
+        "*.tcc": "cpp",
+        "cmath": "cpp",
+        "array": "cpp",
+        "bitset": "cpp",
+        "utility": "cpp"
     }
 }

@@ -30,7 +30,10 @@
             "presentation": {
                 "reveal": "never"
             },
-            "group": "build",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
             "problemMatcher": {
                 "owner": "cpp",
                 "fileLocation": [
@@ -46,6 +49,6 @@
                     "message": 5
                 }
             }
-        },
+        }
     ]
 }
