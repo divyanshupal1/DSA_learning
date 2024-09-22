@@ -9,30 +9,24 @@ void printVector(vector<int> arr){
 }
 
 class Solution {
+    void reverse(vector<int>&nums,int start,int end){
+        while(start<=end) swap(nums[start++],nums[end--]);
+    }
 public:
     void rotate(vector<int>& nums, int k) {
-        int i=0,j=nums.size()-k-1;
-        while(i<=j){
-            cout<<"1l i:"<<i<<" j:"<<j<<endl;
-            swap(nums[i++],nums[j--]);
-        }
-        i=k+1,j=nums.size()-1;
-        while(i<=j){
-            cout<<"2l i:"<<i<<" j:"<<j<<endl;
-            swap(nums[i++],nums[j--]);
-        }
-        i=0,j=nums.size()-1;
-        while(i<=j){
-            cout<<"3l i:"<<i<<" j:"<<j<<endl;
-            swap(nums[i++],nums[j--]);
-        }
+        k=k%nums.size();
+        if(nums.size()==1) return;
+        int j=nums.size()-k-1;
+        reverse(nums,0,j);
+        reverse(nums,j+1,nums.size()-1);
+        reverse(nums,0,nums.size()-1);
     }
 };
 
 int main(){
     Solution solve = Solution();
-    vector<int>nums = {-1,2};
-    int k = 3;
+    vector<int>nums = {-1,-100,3,99};
+    int k = 2;
 
     solve.rotate(nums,k);
 
